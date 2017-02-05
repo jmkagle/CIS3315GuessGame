@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package guessproject;
+
 import java.util.Random;
 import java.util.Scanner;
-
 
 /**
  *
@@ -21,22 +21,27 @@ public class GuessProject {
         // TODO code application logic here
         Random rand = new Random();
         Scanner sc = new Scanner(System.in);
-        int number = rand.nextInt(10)+1;
-        
-        System.out.println("Type a number between 1 and 10");
-        int choice = Integer.parseInt(sc.nextLine());
-        
-        while (number != choice){
-            if (choice > number){
-                System.out.println("That's too high.  Try again.");
-            }
-            if (choice<number){
-                System.out.println("That's too low.  Try again.");
-            }
+
+        String again = "y";
+        while (again.equalsIgnoreCase("y")) {
+            int number = rand.nextInt(10) + 1;
             System.out.println("Type a number between 1 and 10");
-            choice = Integer.parseInt(sc.nextLine());
+            int choice = Integer.parseInt(sc.nextLine());
+
+            while (number != choice) {
+                if (choice > number) {
+                    System.out.println("That's too high.  Try again.");
+                }
+                if (choice < number) {
+                    System.out.println("That's too low.  Try again.");
+                }
+                System.out.println("Type a number between 1 and 10");
+                choice = Integer.parseInt(sc.nextLine());
+            }
+
+            System.out.println("That's it! The number was " + number + "!");
+            System.out.println("Would you like to play again? (y/n)?");
+            again = sc.nextLine();
         }
-        
-        System.out.println("That's it! The number was " + number+ "! Thanks for playing!");
-    
-}}
+    }
+}
